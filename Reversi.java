@@ -3,7 +3,7 @@
  * @authors Guénolé Sixte
  */
 
-class reversi{
+class Reversi{
 
     char[][] tab;
 
@@ -31,6 +31,9 @@ class reversi{
         System.out.println("    ░███    ░███  ░███ ░   █  ░░░█████░    ░███ ░   █ ░███    ░███  ███    ░███ ░███ ");
         System.out.println("    █████   █████ ██████████    ░░███      ██████████ █████   █████░░█████████  █████");
         System.out.println("   ░░░░░   ░░░░░ ░░░░░░░░░░      ░░░      ░░░░░░░░░░ ░░░░░   ░░░░░  ░░░░░░░░░  ░░░░░ ");
+		System.out.println();
+		System.out.println();
+		System.out.println();
 
     }
 
@@ -48,8 +51,8 @@ class reversi{
         System.out.println("    ░██     ░██     ░██ ░██     ░██       ░██░██ ░██░██   ░██  ░██  ░██░██ ");
         System.out.println("    ░██      ░██   ░██   ░██   ░██        ░████   ░████   ░██  ░██   ░████ ");
         System.out.println("    ░██       ░██████     ░██████         ░███     ░███ ░██████░██    ░███ ");
-        System.out.println("");
-        System.out.println("");
+        System.out.println();
+        System.out.println();
         afficheGrille(tab);
     }
 
@@ -67,8 +70,8 @@ class reversi{
         System.out.println("░██     ██ ░██    ░██ ░██  ░██  ░██ ░██            ░██     ░██  ░██  ░██  ░██         ░██   ░██  ");
         System.out.println(" ░██  ░███ ░██    ░██ ░██       ░██ ░██             ░██   ░██    ░██░██   ░██         ░██    ░██ ");
         System.out.println("  ░█████░█ ░██    ░██ ░██       ░██ ░██████████      ░██████      ░███    ░██████████ ░██     ░██ ");
-        System.out.println("");
-        System.out.println("");
+        System.out.println();
+        System.out.println();
         afficheGrille(tab);
     }
 
@@ -88,8 +91,8 @@ class reversi{
         System.out.println(" ░██████          ░██████         ░███    ░██    ░██ ░██████░██    ░███   ░██████     ░██████   ░██████████   ░██████   ░██     ░██ ");
         System.out.println("                                                                              ░██                                                  ");
         System.out.println("                                                                               ░██                                                 ");
-        System.out.println("");
-        System.out.println("");
+        System.out.println();
+        System.out.println();
         afficheGrille(tab);
     }
 
@@ -109,8 +112,8 @@ class reversi{
         System.out.println(" ░██████        ░██    ░██       ░███    ░██    ░██ ░██████░██    ░███   ░██████     ░██████   ░██████████   ░██████   ░██     ░██ ");
         System.out.println("                                                                              ░██                                                  ");
         System.out.println("                                                                               ░██                                                 ");
-        System.out.println("");
-        System.out.println("");
+        System.out.println();
+        System.out.println();
         afficheGrille(tab);
     }
 
@@ -128,8 +131,8 @@ class reversi{
         System.out.println("░██         ░██     ██ ░██    ░██ ░██           ░██      ░██    ░██            ░██ ");
         System.out.println("░██          ░██  ░███ ░██    ░██ ░██           ░██      ░██    ░██                ");
         System.out.println("░██████████   ░█████░█ ░██    ░██ ░██████████ ░██████    ░██    ░██████████    ░██ ");
-        System.out.println("");
-        System.out.println("");
+        System.out.println();
+        System.out.println();
         afficheGrille(tab);
     }
 
@@ -139,9 +142,6 @@ class reversi{
     void regleDuJeu() {
         System.out.print("\u001B[2J\u001B[H");
         debut();
-        System.out.println();
-        System.out.println();
-        System.out.println();
         System.out.println("                     ╔════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("                     ║                                                                                    ║");
         System.out.println("                     ║                                    REGLES DU JEU                                   ║");
@@ -178,7 +178,7 @@ class reversi{
         System.out.println("                     ║             capture tous les pions adverses des lignes ainsi fermées.              ║");
         System.out.println("                     ║                                                                                    ║");
         System.out.println("                     ╚════════════════════════════════════════════════════════════════════════════════════╝");
-        char start = SimpleInput.getChar("Appuyez sur une touche pour commencez !   ");
+        String start = SimpleInput.getString("Appuyez sur une touche pour commencez !   ");
         System.out.println();
         System.out.println();
     }
@@ -189,9 +189,6 @@ class reversi{
     void choixMode() {
         System.out.print("\u001B[2J\u001B[H");
         debut();
-        System.out.println();
-        System.out.println();
-        System.out.println();
         System.out.println("                     ╔═════════════════════════════════════════════╗");
         System.out.println("                     ║                                             ║");
         System.out.println("                     ║        Choissisez votre mode de jeu :       ║");
@@ -298,9 +295,6 @@ class reversi{
     void choixTaille() {
         System.out.print("\u001B[2J\u001B[H");
         debut();
-        System.out.println();
-        System.out.println();
-        System.out.println();
         System.out.println("               ╔═════════════════════════════════════════════════════════╗");
         System.out.println("               ║                                                         ║");
         System.out.println("               ║        Choissisez la taille de la grille de jeu         ║");
@@ -348,9 +342,6 @@ class reversi{
     void afficheGrille(char[][] tab) {
         System.out.print("\u001B[2J\u001B[H");
         debut();
-        System.out.println();
-        System.out.println();
-        System.out.println();
         String abc = "abcdefghijklmnop";
         System.out.print("    ");
         for (int i = 1 ; i < tab.length +1 ; i++) { //affichage de l'abcissse
@@ -443,8 +434,9 @@ class reversi{
      * @param joueur le joueur qui joue
      */
     void jouer(char[][] tab, char joueur){
-        String[] lettres = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"};
+        char[] lettres = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'};
 		String[] nombres = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"};
+		
         System.out.println("C'est au joueur " + joueur + " de jouer");
         System.out.print("Voici les cases jouables : ");
         for (int i = 0; i < tab.length; i++){
@@ -456,7 +448,7 @@ class reversi{
         }
         System.out.println();
         String coord = SimpleInput.getString("Entrez les coordonnées du pion à jouer (lettre puis nombre) : ");
-        int ligne = ((int) (coord.charAt(0))) - 97;
+        int ligne = indice(lettres, coord.charAt;
         int colonne = Integer.parseInt(coord.substring(1)) - 1;
         while (caseJouable(tab, ligne, colonne, joueur)[0] == 0){
             System.out.println("Coordonnées incorrectes.");
@@ -516,7 +508,7 @@ class reversi{
      * @param joueur le joueur qui joue à ce tour ('x' ou 'o')
      * @return un tableau dont la première valeur indique si la case est jouable (0 pour faux et 1 pour vrai)
      * et dont les autres valeurs indiquent dans quel sens l'encadrement est possible et sur combien de pions adverses
-     * (tab[1] vers le haut, tab[2] vers le bas, tab[3] vers la droite...)
+     * (tab[1] vers le bas, tab[2] vers le haut, tab[3] vers la droite...)
      */
     int[] caseJouable(char[][] tab, int ligne, int colonne, char joueur){
         char pionCase = tab[ligne][colonne];
@@ -664,28 +656,49 @@ class reversi{
     }
 
 	/**
-	 * Recherche l'indice de la première occurence d'une chaîne de caractères dans un tableau
-	 * @param tab un tableau de chaîne de caractères
-	 * @param str une chaîne de caractères
+	 * Recherche l'indice de la première occurence d'un caractère dans un tableau
+	 * @param c un caractère
+	 * @param tab un tableau de caractères
 	 * @return l'indice de la première occurence de str dans tab, -1 s'il n'est pas présent
 	 */
-	int indice(String[] tab, String str){
+	int indice(char c, char[] tab){
 		int ind = -1;
-		boolean indTrouve = false;
+		int i = 0;
+		while (i < tab.length && ind == -1){
+			if ()
+			i++;
+		}
+		return ind;
+	}
+
+	/**
+	 * Recherche l'indice de la première occurence d'une chaîne de caractères dans un tableau
+	 * @param str une chaîne de caractères
+	 * @param tab un tableau de chaîne de caractères
+	 * @return l'indice de la première occurence de str dans tab, -1 s'il n'est pas présent
+	 */
+	int indice(String str, String[] tab){
+		int ind = -1;
+		boolean strEgal;
 		int i = 0;
 		int j;
-		while (i < tab.length && !indTrouve){
+		while (i < tab.length && ind == -1){
 			if (tab[i].length() == str.length()){
-				indTrouve = true;
+				strEgal = true;
 				j = 0;
-				while (j < str.length()){
+				while (j < str.length() && strEgal){
 					if (tab[i].charAt(j) != str.charAt(j)){
-						indTrouve = false;
+						strEgal = false;
 					}
+					j++;
+				}
+				if (strEgal){
+					ind = i;
 				}
 			}
 			i++;
 		}
+		return ind;
 	}
     
 }
