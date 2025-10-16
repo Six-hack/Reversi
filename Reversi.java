@@ -3,7 +3,7 @@
  * @authors Guénolé Sixte
  */
 
-class reversi1 {
+class reversi{
 
     char[][] tab;
 
