@@ -447,14 +447,38 @@ class Reversi{
             }
         }
         System.out.println();
-        String coord = SimpleInput.getString("Entrez les coordonnées du pion à jouer (lettre puis nombre) : ");
-        int ligne = indice(lettres, coord.charAt;
-        int colonne = Integer.parseInt(coord.substring(1)) - 1;
+        char ligneChar = SimpleInput.getChar("Entrez la ligne de la case à jouer (lettre) : ");
+		int ligne = indice(ligneChar, lettres);
+		
+		while (ligne == -1 || ligne >= tab.length){
+			System.out.println("Ligne incorrecte.");
+			ligneChar = SimpleInput.getChar("Entrez la ligne de la case à jouer (lettre) : ");
+			ligne = indice(ligneChar, lettres);
+		}
+		
+		String colonneStr = SimpleInput.getString("Entrez la colonne de la case à jouer (nombre) : ");
+		int colonne = indice(colonneStr, nombres);
+		while (colonne == -1 || colonne >= tab.length){
+			System.out.println("Colonne incorrecte.");
+			colonneStr = SimpleInput.getString("Entrez la colonne de la case à jouer (nombre) : ");
+			colonne = indice(colonneStr, nombres);
+		}
+		
         while (caseJouable(tab, ligne, colonne, joueur)[0] == 0){
-            System.out.println("Coordonnées incorrectes.");
-            coord = SimpleInput.getString("Entrez les coordonnées du pion à jouer (lettre puis nombre) : ");
-            ligne = ((int) (coord.charAt(0))) - 97;
-            colonne = Integer.parseInt(coord.substring(1)) - 1;
+	        ligneChar = SimpleInput.getChar("Entrez la ligne de la case à jouer (lettre) : ");
+			ligne = indice(ligneChar, lettres);
+			while (ligne == -1 || ligne >= tab.length){
+				System.out.println("Ligne incorrecte.");
+				ligneChar = SimpleInput.getChar("Entrez la ligne de la case à jouer (lettre) : ");
+				ligne = indice(ligneChar, lettres);
+			}
+			colonneStr = SimpleInput.getString("Entrez la colonne de la case à jouer (nombre) : ");
+			colonne = indice(colonneStr, nombres);
+			while (colonne == -1 || colonne >= tab.length){
+				System.out.println("Colonne incorrecte.");
+				colonneStr = SimpleInput.getString("Entrez la colonne de la case à jouer (nombre) : ");
+				colonne = indice(colonneStr, nombres);
+			}
         }
         ajoutPion(tab, ligne, colonne, joueur);
         afficheGrille(tab);
