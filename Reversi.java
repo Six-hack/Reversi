@@ -683,7 +683,7 @@ class Reversi{
 	 * Recherche l'indice de la première occurence d'un caractère dans un tableau
 	 * @param c un caractère
 	 * @param tab un tableau de caractères
-	 * @return l'indice de la première occurence de str dans tab, -1 s'il n'est pas présent
+	 * @return l'indice de la première occurence de c dans tab, -1 s'il n'est pas présent
 	 */
 	int indice(char c, char[] tab){
 		int ind = -1;
