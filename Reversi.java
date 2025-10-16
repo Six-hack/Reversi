@@ -1,18 +1,16 @@
-import java.util.Scanner;
+/*
+ * jeu Reversi/Othello
+ * @authors Guénolé Sixte
+ */
 
-class Reversi {
+class reversi1 {
 
     char[][] tab;
 
     void principal() {
         regleDuJeu();
         choixMode();
-        choixTaille();
-        afficheGrille(tab);
-        for (int i = 0; i < (tab.length*tab.length)-4; i += 2) {
-            jouer(tab, 'x');
-            jouer(tab, 'o');
-        }
+        
         exitGame();
         
         //afficheGrille(tab);
@@ -21,7 +19,7 @@ class Reversi {
     /**
      * affiche le nom du jeu
      */
-    void titre() {
+    void debut() {
 		System.out.println();
 		System.out.println();
 		System.out.println();
@@ -33,10 +31,106 @@ class Reversi {
         System.out.println("    ░███    ░███  ░███ ░   █  ░░░█████░    ░███ ░   █ ░███    ░███  ███    ░███ ░███ ");
         System.out.println("    █████   █████ ██████████    ░░███      ██████████ █████   █████░░█████████  █████");
         System.out.println("   ░░░░░   ░░░░░ ░░░░░░░░░░      ░░░      ░░░░░░░░░░ ░░░░░   ░░░░░  ░░░░░░░░░  ░░░░░ ");
-        System.out.println();
-        System.out.println();
-        System.out.println();
 
+    }
+
+        /**
+     * affiche message de réussite en mode 1 joueur
+     */
+    void finWinJ() {
+        System.out.print("\u001B[2J\u001B[H");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("░██     ░██   ░██████   ░██     ░██       ░██       ░██ ░██████░███    ░██ ");
+        System.out.println(" ░██   ░██   ░██   ░██  ░██     ░██       ░██       ░██   ░██  ░████   ░██ ");
+        System.out.println("  ░██ ░██   ░██     ░██ ░██     ░██       ░██  ░██  ░██   ░██  ░██░██  ░██");
+        System.out.println("   ░████    ░██     ░██ ░██     ░██       ░██ ░████ ░██   ░██  ░██ ░██ ░██ ");
+        System.out.println("    ░██     ░██     ░██ ░██     ░██       ░██░██ ░██░██   ░██  ░██  ░██░██ ");
+        System.out.println("    ░██      ░██   ░██   ░██   ░██        ░████   ░████   ░██  ░██   ░████ ");
+        System.out.println("    ░██       ░██████     ░██████         ░███     ░███ ░██████░██    ░███ ");
+        System.out.println("");
+        System.out.println("");
+        afficheGrille(tab);
+    }
+
+    /**
+     * affiche message d'échec face au robot
+     */
+    void finWinR() {
+        System.out.print("\u001B[2J\u001B[H");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("  ░██████     ░███    ░███     ░███ ░██████████      ░██████   ░██    ░██ ░██████████ ░█████████ ");
+        System.out.println(" ░██   ░██   ░██░██   ░████   ░████ ░██             ░██   ░██  ░██    ░██ ░██         ░██     ░██");
+        System.out.println("░██         ░██  ░██  ░██░██ ░██░██ ░██            ░██     ░██ ░██    ░██ ░██         ░██     ░██");
+        System.out.println("░██  █████ ░█████████ ░██ ░████ ░██ ░█████████     ░██     ░██ ░██    ░██ ░█████████  ░█████████ ");
+        System.out.println("░██     ██ ░██    ░██ ░██  ░██  ░██ ░██            ░██     ░██  ░██  ░██  ░██         ░██   ░██  ");
+        System.out.println(" ░██  ░███ ░██    ░██ ░██       ░██ ░██             ░██   ░██    ░██░██   ░██         ░██    ░██ ");
+        System.out.println("  ░█████░█ ░██    ░██ ░██       ░██ ░██████████      ░██████      ░███    ░██████████ ░██     ░██ ");
+        System.out.println("");
+        System.out.println("");
+        afficheGrille(tab);
+    }
+
+    /**
+     * affiche le message de réussite du joueur 1
+     */
+    void finWinJ1() {
+        System.out.print("\u001B[2J\u001B[H");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("    ░█████        ░██████      ░██    ░██    ░███    ░██████░███    ░██   ░██████   ░██     ░██ ░██████████ ░██     ░██ ░█████████  ");
+        System.out.println("      ░██        ░██   ░██     ░██    ░██   ░██░██     ░██  ░████   ░██  ░██   ░██  ░██     ░██ ░██         ░██     ░██ ░██     ░██");
+        System.out.println("      ░██       ░██     ░██    ░██    ░██  ░██  ░██    ░██  ░██░██  ░██ ░██     ░██ ░██     ░██ ░██         ░██     ░██ ░██     ░██");
+        System.out.println("      ░██  ░███ ░██     ░██    ░██    ░██ ░█████████   ░██  ░██ ░██ ░██ ░██     ░██ ░██     ░██ ░█████████  ░██     ░██ ░█████████  ");
+        System.out.println("░██   ░██       ░██     ░██     ░██  ░██  ░██    ░██   ░██  ░██  ░██░██ ░██     ░██ ░██     ░██ ░██         ░██     ░██ ░██   ░██   ");
+        System.out.println("░██   ░██        ░██   ░██       ░██░██   ░██    ░██   ░██  ░██   ░████  ░██   ░██   ░██   ░██  ░██          ░██   ░██  ░██    ░██  ");
+        System.out.println(" ░██████          ░██████         ░███    ░██    ░██ ░██████░██    ░███   ░██████     ░██████   ░██████████   ░██████   ░██     ░██ ");
+        System.out.println("                                                                              ░██                                                  ");
+        System.out.println("                                                                               ░██                                                 ");
+        System.out.println("");
+        System.out.println("");
+        afficheGrille(tab);
+    }
+
+    /**
+     * affiche le message de réussite du joueur 1
+     */
+    void finWinJ2() {
+        System.out.print("\u001B[2J\u001B[H");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("    ░█████      ░██    ░██    ░██    ░██    ░███    ░██████░███    ░██   ░██████   ░██     ░██ ░██████████ ░██     ░██ ░█████████  ");
+        System.out.println("      ░██        ░██  ░██     ░██    ░██   ░██░██     ░██  ░████   ░██  ░██   ░██  ░██     ░██ ░██         ░██     ░██ ░██     ░██");
+        System.out.println("      ░██         ░██░██      ░██    ░██  ░██  ░██    ░██  ░██░██  ░██ ░██     ░██ ░██     ░██ ░██         ░██     ░██ ░██     ░██");
+        System.out.println("      ░██  ░███    ░███       ░██    ░██ ░█████████   ░██  ░██ ░██ ░██ ░██     ░██ ░██     ░██ ░█████████  ░██     ░██ ░█████████  ");
+        System.out.println("░██   ░██         ░██░██       ░██  ░██  ░██    ░██   ░██  ░██  ░██░██ ░██     ░██ ░██     ░██ ░██         ░██     ░██ ░██   ░██   ");
+        System.out.println("░██   ░██        ░██  ░██       ░██░██   ░██    ░██   ░██  ░██   ░████  ░██   ░██   ░██   ░██  ░██          ░██   ░██  ░██    ░██  ");
+        System.out.println(" ░██████        ░██    ░██       ░███    ░██    ░██ ░██████░██    ░███   ░██████     ░██████   ░██████████   ░██████   ░██     ░██ ");
+        System.out.println("                                                                              ░██                                                  ");
+        System.out.println("                                                                               ░██                                                 ");
+        System.out.println("");
+        System.out.println("");
+        afficheGrille(tab);
+    }
+
+    /**
+     * affiche le message d'égalité à la fin de la partie
+     */
+    void finDraw() {
+        System.out.print("\u001B[2J\u001B[H");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("░██████████   ░██████     ░███    ░██         ░██████░██████████░██████████    ░██ ");
+        System.out.println("░██          ░██   ░██   ░██░██   ░██           ░██      ░██    ░██            ░██ ");
+        System.out.println("░██         ░██         ░██  ░██  ░██           ░██      ░██    ░██            ░██ ");
+        System.out.println("░█████████  ░██  █████ ░█████████ ░██           ░██      ░██    ░█████████     ░██ ");
+        System.out.println("░██         ░██     ██ ░██    ░██ ░██           ░██      ░██    ░██            ░██ ");
+        System.out.println("░██          ░██  ░███ ░██    ░██ ░██           ░██      ░██    ░██                ");
+        System.out.println("░██████████   ░█████░█ ░██    ░██ ░██████████ ░██████    ░██    ░██████████    ░██ ");
+        System.out.println("");
+        System.out.println("");
+        afficheGrille(tab);
     }
 
     /**
@@ -44,7 +138,10 @@ class Reversi {
      */
     void regleDuJeu() {
         System.out.print("\u001B[2J\u001B[H");
-        titre();
+        debut();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println("                     ╔════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("                     ║                                                                                    ║");
         System.out.println("                     ║                                    REGLES DU JEU                                   ║");
@@ -81,7 +178,7 @@ class Reversi {
         System.out.println("                     ║             capture tous les pions adverses des lignes ainsi fermées.              ║");
         System.out.println("                     ║                                                                                    ║");
         System.out.println("                     ╚════════════════════════════════════════════════════════════════════════════════════╝");
-        String commencer = SimpleInput.getInt("Appuyez sur une touche pour commencez !   ");
+        char start = SimpleInput.getChar("Appuyez sur une touche pour commencez !   ");
         System.out.println();
         System.out.println();
     }
@@ -91,7 +188,10 @@ class Reversi {
      */
     void choixMode() {
         System.out.print("\u001B[2J\u001B[H");
-        titre();
+        debut();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println("                     ╔═════════════════════════════════════════════╗");
         System.out.println("                     ║                                             ║");
         System.out.println("                     ║        Choissisez votre mode de jeu :       ║");
@@ -122,17 +222,85 @@ class Reversi {
         
         if (choix == 1) {
             //mode1joueur();
+            //choixTaille(); 
+            
+
         } else {
-            //mode2joueurs();
+            //mode2joueurs
+            choixTaille(); 
+            mode2joueurs('o');
         }
     }
 
+    /**
+     * lance le mode 2 joueur
+     * @param player un caractere correespondant au pion du joueur
+     */
+    void mode2joueurs(char player) {
+        /*while casesjouables  diff de 0*/ {
+            if (tabPlein(tab)) {
+                if(comptePion(tab, 'x') > comptePion(tab, 'o')) {
+                    finWinJ1();
+                } else if (comptePion(tab, 'x') < comptePion(tab, 'o')){
+                    finWinJ2();
+                } else {
+                    finDraw();
+                }
+            } else {
+                jouer(tab, player);
+                if (player == 'x') {
+                    mode2joueurs('o');
+                } else {
+                    mode2joueurs('x');
+                }
+            }
+        }
+    }
+
+    /**
+     * fonction qui determine si le plateau est plein
+     * @param tab un tableau 2d de caracteres
+     * @return false si un seul elt du tableau est un espace, true sinon
+     */
+    boolean tabPlein(char[][] tab) {
+        boolean bool = true;
+        for (int i = 0 ; i < tab.length ; i++) {
+            for (int j = 0 ; j < tab.length ; j++) {
+                if (tab[i][j] == ' ') {
+                    bool = false;
+                }
+            }
+        }
+        return bool;
+    }
+
+    /**
+     * fonction qui compte le nombre de pion x ou o sur le plateau
+     * @param tab
+     * @param pion
+     * @return
+     */
+    int comptePion(char[][] tab, char pion) {
+        int cpt = 0;
+        for (int i = 0 ; i < tab.length ; i++) {
+            for (int j = 0 ; j < tab.length ; j++) {
+                if (tab[i][j] == pion) {
+                    cpt++;
+                }
+            }
+        }
+        return cpt;
+    }
+    
     /**
      * demande la taille de la grille au joueur
      */
     void choixTaille() {
         System.out.print("\u001B[2J\u001B[H");
-        titre();
+        debut();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println("               ╔═════════════════════════════════════════════════════════╗");
         System.out.println("               ║                                                         ║");
         System.out.println("               ║        Choissisez la taille de la grille de jeu         ║");
@@ -169,6 +337,8 @@ class Reversi {
         tab[(tab.length/2)][(tab.length/2)-1] = 'o';
         tab[(tab.length/2)-1][(tab.length/2)] = 'o';
         tab[(tab.length/2)][(tab.length/2)] = 'x';
+
+        afficheGrille(tab);
     }
 
     /**
@@ -177,7 +347,10 @@ class Reversi {
      */
     void afficheGrille(char[][] tab) {
         System.out.print("\u001B[2J\u001B[H");
-        titre();
+        debut();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         String abc = "abcdefghijklmnop";
         System.out.print("    ");
         for (int i = 1 ; i < tab.length +1 ; i++) { //affichage de l'abcissse
@@ -271,8 +444,6 @@ class Reversi {
      */
     void jouer(char[][] tab, char joueur){
         String[] lettres = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"};
-        String[] nombres = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"};
-
         System.out.println("C'est au joueur " + joueur + " de jouer");
         System.out.print("Voici les cases jouables : ");
         for (int i = 0; i < tab.length; i++){
@@ -282,27 +453,17 @@ class Reversi {
                 }
             }
         }
-
         System.out.println();
         String coord = SimpleInput.getString("Entrez les coordonnées du pion à jouer (lettre puis nombre) : ");
-        coord = coord.toLowerCase().trim();
+        coord = coord.toLowerCase();
         int ligne = ((int) (coord.charAt(0))) - 97;
-        int colonne;
-        try {
-            colonne = Integer.parseInt(coord.substring(1)) - 1;
-        } catch (NumberFormatException e){
-            colonne = -1;
-        }
-        while (ligne < 0 || ligne >= tab.length || colonne < 0 || colonne >= tab.length || caseJouable(tab, ligne, colonne, joueur)[0] == 0){
+        int colonne = Integer.parseInt(coord.substring(1)) - 1;
+        while (caseJouable(tab, ligne, colonne, joueur)[0] == 0){
             System.out.println("Coordonnées incorrectes.");
             coord = SimpleInput.getString("Entrez les coordonnées du pion à jouer (lettre puis nombre) : ");
-            coord = coord.toLowerCase().trim();
+            coord = coord.toLowerCase();
             ligne = ((int) (coord.charAt(0))) - 97;
-            try {
             colonne = Integer.parseInt(coord.substring(1)) - 1;
-            } catch (NumberFormatException e){
-            colonne = -1;
-            }
         }
         ajoutPion(tab, ligne, colonne, joueur);
         afficheGrille(tab);
@@ -370,7 +531,7 @@ class Reversi {
             joueurAdv = 'o';
         }
         int[] cJouable = new int[9];
-        if (pionCase == ' '){
+        if (pionCase != '0'){
             pionCase = joueur;
 			i = ligne + 1;         //on teste si on peut encadrer des pions adverses vers le haut
 			comptDepl = 0;
@@ -490,7 +651,7 @@ class Reversi {
     /**
      * teste l'existence d'un entier dans un tableau
      * @param c un entier
-     * @param tab un tableau d'entiers
+     * @param tab un tableau d'entier
      * @return vrai ou faux
      */
     boolean in(int c, int[] tab) {
@@ -501,5 +662,6 @@ class Reversi {
             } 
         } return bool;
     }
+    
 }
 
