@@ -444,6 +444,7 @@ class reversi{
      */
     void jouer(char[][] tab, char joueur){
         String[] lettres = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"};
+		String[] nombres = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"};
         System.out.println("C'est au joueur " + joueur + " de jouer");
         System.out.print("Voici les cases jouables : ");
         for (int i = 0; i < tab.length; i++){
@@ -455,13 +456,11 @@ class reversi{
         }
         System.out.println();
         String coord = SimpleInput.getString("Entrez les coordonnées du pion à jouer (lettre puis nombre) : ");
-        coord = coord.toLowerCase();
         int ligne = ((int) (coord.charAt(0))) - 97;
         int colonne = Integer.parseInt(coord.substring(1)) - 1;
         while (caseJouable(tab, ligne, colonne, joueur)[0] == 0){
             System.out.println("Coordonnées incorrectes.");
             coord = SimpleInput.getString("Entrez les coordonnées du pion à jouer (lettre puis nombre) : ");
-            coord = coord.toLowerCase();
             ligne = ((int) (coord.charAt(0))) - 97;
             colonne = Integer.parseInt(coord.substring(1)) - 1;
         }
@@ -660,8 +659,23 @@ class reversi{
             if (c == tab[i]) {
                 bool = true;
             } 
-        } return bool;
+        }
+		return bool;
     }
+
+	/**
+	 * Recherche l'indice de la première occurence d'une chaîne de caractères dans un tableau
+	 * @param tab un tableau de chaîne de caractères
+	 * @param str une chaîne de caractères
+	 * @return l'indice de la première occurence de str dans tab, -1 s'il n'est pas présent
+	 */
+	int indice(String[] tab, String str){
+		int ind = -1;
+		boolean indTrouve = false;
+		int i = 0;
+		while (i < tab.length && !indTrouve){
+			
+		}
+	}
     
 }
-
