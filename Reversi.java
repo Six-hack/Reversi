@@ -673,8 +673,18 @@ class reversi{
 		int ind = -1;
 		boolean indTrouve = false;
 		int i = 0;
+		int j;
 		while (i < tab.length && !indTrouve){
-			
+			if (tab[i].length() == str.length()){
+				indTrouve = true;
+				j = 0;
+				while (j < str.length()){
+					if (tab[i].charAt(j) != str.charAt(j)){
+						indTrouve = false;
+					}
+				}
+			}
+			i++;
 		}
 	}
     
