@@ -549,7 +549,7 @@ class Reversi{
             joueurAdv = 'o';
         }
         int[] cJouable = new int[9];
-        if (pionCase != '0'){
+        if (pionCase == ' '){
             pionCase = joueur;
 			i = ligne + 1;         //on teste si on peut encadrer des pions adverses vers le haut
 			comptDepl = 0;
