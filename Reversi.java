@@ -434,7 +434,7 @@ class Reversi{
      * @param joueur le joueur qui joue
      */
     void jouer(char[][] tab, char joueur){
-        char[] lettres = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'};
+        String[] lettres = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"};
 		String[] nombres = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"};
 		
         System.out.println("C'est au joueur " + joueur + " de jouer");
@@ -447,17 +447,18 @@ class Reversi{
             }
         }
         System.out.println();
-        char ligneChar = SimpleInput.getChar("Entrez la ligne de la case à jouer (lettre) : ");
-		int ligne = indice(ligneChar, lettres);
+        String ligneStr = SimpleInput.getString("Entrez la ligne de la case à jouer (lettre) : ");
+		int ligne = indice(ligneStr, lettres);
 		
 		while (ligne == -1 || ligne >= tab.length){
 			System.out.println("Ligne incorrecte.");
-			ligneChar = SimpleInput.getChar("Entrez la ligne de la case à jouer (lettre) : ");
-			ligne = indice(ligneChar, lettres);
+			ligneStr = SimpleInput.getString("Entrez la ligne de la case à jouer (lettre) : ");
+			ligne = indice(ligneStr, lettres);
 		}
 		
 		String colonneStr = SimpleInput.getString("Entrez la colonne de la case à jouer (nombre) : ");
 		int colonne = indice(colonneStr, nombres);
+		
 		while (colonne == -1 || colonne >= tab.length){
 			System.out.println("Colonne incorrecte.");
 			colonneStr = SimpleInput.getString("Entrez la colonne de la case à jouer (nombre) : ");
@@ -465,12 +466,14 @@ class Reversi{
 		}
 		
         while (caseJouable(tab, ligne, colonne, joueur)[0] == 0){
-	        ligneChar = SimpleInput.getChar("Entrez la ligne de la case à jouer (lettre) : ");
-			ligne = indice(ligneChar, lettres);
+			System.out.println("Coordonnées incorrectes.");
+			
+	        ligneStr = SimpleInput.getString("Entrez la ligne de la case à jouer (lettre) : ");
+			ligne = indice(ligneStr, lettres);
 			while (ligne == -1 || ligne >= tab.length){
 				System.out.println("Ligne incorrecte.");
-				ligneChar = SimpleInput.getChar("Entrez la ligne de la case à jouer (lettre) : ");
-				ligne = indice(ligneChar, lettres);
+				ligneStr = SimpleInput.getString("Entrez la ligne de la case à jouer (lettre) : ");
+				ligne = indice(ligneStr, lettres);
 			}
 			colonneStr = SimpleInput.getString("Entrez la colonne de la case à jouer (nombre) : ");
 			colonne = indice(colonneStr, nombres);
@@ -678,24 +681,6 @@ class Reversi{
         }
 		return bool;
     }
-
-	/**
-	 * Recherche l'indice de la première occurence d'un caractère dans un tableau
-	 * @param c un caractère
-	 * @param tab un tableau de caractères
-	 * @return l'indice de la première occurence de c dans tab, -1 s'il n'est pas présent
-	 */
-	int indice(char c, char[] tab){
-		int ind = -1;
-		int i = 0;
-		while (i < tab.length && ind == -1){
-			if (tab[i] == c){
-				ind = i;
-			}
-			i++;
-		}
-		return ind;
-	}
 
 	/**
 	 * Recherche l'indice de la première occurence d'une chaîne de caractères dans un tableau
