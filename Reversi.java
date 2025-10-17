@@ -689,7 +689,9 @@ class Reversi{
 		int ind = -1;
 		int i = 0;
 		while (i < tab.length && ind == -1){
-			if ()
+			if (tab[i] == c){
+				ind = i;
+			}
 			i++;
 		}
 		return ind;
