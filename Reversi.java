@@ -34,7 +34,6 @@ class Reversi{
 		System.out.println();
 		System.out.println();
 		System.out.println();
-
     }
 
         /**
@@ -531,7 +530,7 @@ class Reversi{
 	 * lance une partie de Reversi à un joueur, l'autre étant l'ordinateur
 	 */
 	void modeUnJoueur(){
-		
+		debut();
 	}
 
     /**
