@@ -527,6 +527,13 @@ class Reversi{
         }
     }
 
+	/**
+	 * lance une partie de Reversi à un joueur, l'autre étant l'ordinateur
+	 */
+	void modeUnJoueur(){
+		
+	}
+
     /**
      * teste si une case est jouable par le joueur
      * @param tab le tableau représentant le reversi
