@@ -9,6 +9,9 @@ class Reversi{
 
     void principal() {
         char rejouer = 'o';
+
+        testIndice();
+
         regleDuJeu();
         
         while (rejouer == 'o' || rejouer == 'O'){
@@ -292,8 +295,8 @@ class Reversi{
             jouerOrdi(plateau, echange(joueur));      //l'ordinateur joue en premier s'il a les pions o
             if (!tabPlein(plateau) && nbJoueurNPPJouer < 2){
                 jouer(plateau, joueur);    //puis le joueur joue à son tour
-            }     //la partie se finit quand la boucle while s'arrête
-        }
+            }
+        }    //la partie se finit quand la boucle while s'arrête
 
         int pionsJoueur = compteCase(plateau, joueur);    //on compte le nombre de pions du joueur à la fin de la partie
         int pionsOrdi = compteCase(plateau, echange(joueur));   //on compte le nombre de pions de l'ordinateur à la fin de la partie
@@ -305,7 +308,7 @@ class Reversi{
             finDraw();          //sinon, un message d'égalité s'affiche
         }
         if (joueur == 'o'){
-            score(plateau, pionsOrdi, pionsJoueur);
+            score(plateau, pionsOrdi, pionsJoueur);    //on affiche le score du joueur et de l'ordinateur, selon le pion appartenant au joueur
         } else {
             score(plateau, pionsJoueur, pionsOrdi);
         }
@@ -330,7 +333,7 @@ class Reversi{
             afficheGrille(plateau);  //on affiche le plateau à chaque tour
         }        //la partie se finit quand on sort de la boucle while
 
-        int pionsX = compteCase(plateau, 'x');    //on compte le nombre de pions de chacun des joueurs
+        int pionsX = compteCase(plateau, 'x');    //on compte le nombre de pions de chacun des joueurs à la fin de la partie
         int pionsO = compteCase(plateau, 'o');
         if(pionsX > pionsO){
             finWinJ2();          //s'il y a plus de pions 'x' que de 'o' alors un message s'affiche
@@ -339,7 +342,7 @@ class Reversi{
         } else {
             finDraw();           //sinon, un message d'égalité s'affiche
         }
-        score(plateau, pionsX, pionsO);
+        score(plateau, pionsX, pionsO);  //on affiche le score des deux joueurs
     }
 
     /**
@@ -805,5 +808,55 @@ class Reversi{
 			}
         }
         return cJouable;
+    }
+
+    /**
+     * Teste un appel de indice()
+     * @param str une chaîne de caractères
+     * @param tab un tableau de chaîne de caractères
+     * @param result le résultat attendu
+     */
+    void testCasIndice(String str, String[] tab, int result){
+        // Affichage
+		System.out.print("indice(\"" + str + "\", ");
+        afficheTab(tab);
+        System.out.print(") \t = " + result + "\t : ");
+		
+		// Appel
+		int resExec = indice(str, tab);
+		
+		// Verification
+		if (resExec == result){
+			System.out.println("OK");
+		} else {
+			System.err.println("ERREUR");
+		}
+    }
+
+    /**
+     * Teste la méthode indice()
+     */
+    void testIndice(){
+		System.out.println("*** testIndice()");
+		
+		testCasIndice("1", new String[] {"1", "2", "3", "4", "5"}, 0);
+        testCasIndice("6", new String[] {"1", "2", "3", "4", "5"}, -1);
+        testCasIndice("abc", new String[] {"ab", "abc", "abcd", "abc"}, 1);
+        testCasIndice("abcdef", new String[] {"ab", "abc", "abcd", "abc"}, -1);
+    }
+
+    /**
+     * Affiche un tableau de chaînes de caractères
+     * @param tab un tableau de chaînes de caractères
+     */
+    void afficheTab(String[] tab){
+        System.out.print("{");
+        for (int i = 0; i < tab.length - 1; i++){
+            System.out.print("\"" + tab[i] + "\", ");
+        }
+        if (tab.length > 0){
+            System.out.print("\"" + tab[tab.length - 1] + "\"");
+        }
+        System.out.print("}");
     }
 }
