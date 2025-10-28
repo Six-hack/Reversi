@@ -57,9 +57,9 @@ class Reversi{
     char echange(char joueur){
         char joueurAdv;
         if (joueur == 'o'){
-            joueurAdv = 'x';
+			joueurAdv = 'x';
         } else {
-            joueurAdv = 'o';
+			joueurAdv = 'o';
         }
         return joueurAdv;
     }
@@ -699,7 +699,7 @@ class Reversi{
      * @param joueur le joueur qui joue à ce tour ('x' ou 'o')
      * @return un tableau d'entiers dont la première valeur indique si la case est jouable (0 pour faux et 1 pour vrai)
      * et dont les autres valeurs indiquent dans quel sens l'encadrement est possible et sur combien de pions adverses
-     * (plateau[1] vers le haut, plateau[2] vers le bas, plateau[3] vers la droite...)
+     * (cJouable[1] vers le bas, cJouable[2] vers le haut, cJouable[3] vers la droite...)
      */
     int[] caseJouable(char[][] plateau, int ligne, int colonne, char joueur){
         char pionCase = plateau[ligne][colonne];
@@ -841,8 +841,9 @@ class Reversi{
 		
 		testCasIndice("1", new String[] {"1", "2", "3", "4", "5"}, 0);
         testCasIndice("6", new String[] {"1", "2", "3", "4", "5"}, -1);
+        testCasIndice("", new String[] {"1", "2", "3", "4", "5"}, -1);
         testCasIndice("abc", new String[] {"ab", "abc", "abcd", "abc"}, 1);
-        testCasIndice("abcdef", new String[] {"ab", "abc", "abcd", "abc"}, -1);
+        testCasIndice("abc", new String[] {}, -1);
     }
 
     /**
