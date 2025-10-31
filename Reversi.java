@@ -80,6 +80,9 @@ class Reversi{
         sautLigne(3);
     }
 
+    /**
+     * Affiche le nom du jeu en taille réduite
+     */
     void petitTitre() {
         System.out.println();
         System.out.println("     ┳┓┏┓┓┏┏┓┳┓┏┓┳");
@@ -88,7 +91,7 @@ class Reversi{
     }
 
     /**
-     * Affiche message de réussite face à l'ordinateur
+     * Affiche un message de réussite face à l'ordinateur
      */
     void finWinJ() {
         sautLigne(27);
@@ -103,7 +106,7 @@ class Reversi{
     }
 
     /**
-     * Affiche message d'échec face à l'ordinateur
+     * Affiche un message d'échec face à l'ordinateur
      */
     void finWinR() {
         sautLigne(27);
@@ -146,7 +149,7 @@ class Reversi{
         System.out.println("   ░███       ░██    ░██ ░█████████   ░██  ░██ ░██ ░██ ░██     ░██ ░██     ░██ ░█████████  ░██     ░██ ░█████████  ");
         System.out.println("  ░██░██       ░██  ░██  ░██    ░██   ░██  ░██  ░██░██ ░██     ░██ ░██     ░██ ░██         ░██     ░██ ░██   ░██   ");
         System.out.println(" ░██  ░██       ░██░██   ░██    ░██   ░██  ░██   ░████  ░██   ░██   ░██   ░██  ░██          ░██   ░██  ░██    ░██  ");
-        System.out.println(" ██    ░██       ░███    ░██    ░██ ░██████░██    ░███   ░██████     ░██████   ░██████████   ░██████   ░██     ░██ ");
+        System.out.println("░██    ░██       ░███    ░██    ░██ ░██████░██    ░███   ░██████     ░██████   ░██████████   ░██████   ░██     ░██ ");
         System.out.println("                                                              ░██                                                  ");
         System.out.println("                                                               ░██                                                 ");
         //sautLigne(2);
@@ -346,26 +349,6 @@ class Reversi{
     }
 
     /**
-     * Affiche le tableau final et le score de chaque joueur
-     * @param plateau le tableau à deux dimensions représentant le plateau de Reversi
-     * @param pionsX le nombre de pions appartenant au joueur x à la fin de la partie
-     * @param pionsO le nombre de pions appartenant au joueur o à la fin de la partie
-     */
-    void score(char[][] plateau, int pionsX, int pionsO){
-        afficheGrille(plateau);
-
-        System.out.print(pionsX + " pion");
-        if (pionsX > 1){
-            System.out.print("s");
-        }
-        System.out.print(" au joueur x contre " + pionsO + " pion");
-        if (pionsO > 1){
-            System.out.print("s");
-        }
-        System.out.println(" au joueur o.");
-    }
-
-    /**
      * Détermine si le plateau est plein
      * @param plateau le tableau à deux dimensions représentant le plateau de Reversi
      * @return false si un seul élément du tableau tab est un espace, true sinon
@@ -393,104 +376,26 @@ class Reversi{
     }
 
     /**
-     * Affiche un nouvel écran pour le tour suivant
+     * Affiche le tableau final et le score de chaque joueur
      * @param plateau le tableau à deux dimensions représentant le plateau de Reversi
+     * @param pionsX le nombre de pions appartenant au joueur x à la fin de la partie
+     * @param pionsO le nombre de pions appartenant au joueur o à la fin de la partie
      */
-    void transition(char[][] plateau){
-        sautLigne(25);
-        if (plateau.length < 10) {
-            titre();
-        } else {
-            petitTitre();
+    void score(char[][] plateau, int pionsX, int pionsO){
+        afficheGrille(plateau);
+
+        System.out.print(pionsX + " pion");
+        if (pionsX > 1){
+            System.out.print("s");
         }
-        System.out.println();
+        System.out.print(" au joueur x contre " + pionsO + " pion");
+        if (pionsO > 1){
+            System.out.print("s");
+        }
+        System.out.println(" au joueur o.");
     }
 
-    /**
-     * affiche du reversi avec les valeurs du tableau
-     * @param plateau le tableau à deux dimensions représentant le plateau de Reversi
-     */
-    void afficheGrille(char[][] plateau) {
-        String abc = "abcdefghijklmnop";
-        System.out.print("    ");
-        for (int i = 1 ; i < plateau.length +1 ; i++) { //affichage de l'abcissse
-            System.out.printf("%2d ", i);
-            System.out.print(" ");
-        }
-        System.out.println();
-        
-
-        //Affichage de la premiere ligne du tableau
-        System.out.print("   ╔");
-        for (int i = 0; i < plateau.length-1; i++) {
-            System.out.print("═══╦");
-        }
-        System.out.println("═══╗");
-        
-        for (int i = 0 ; i < plateau.length-1; i++) { //affichage de l'ordonnée et des valeurs
-
-            //affichage des valeurs
-            System.out.print(" "+abc.charAt(i));
-            for (int j = 0 ; j < plateau.length ; j++) { 
-                System.out.print(" ║ "+plateau[i][j]);
-            }
-            System.out.println(" ║");
-
-
-            //affichage de l'interligne
-            System.out.print("   ");
-            System.out.print("╠");
-            for (int k = 0 ; k < plateau.length-1 ; k++) { 
-                System.out.print("═══╬");
-            }
-            System.out.print("═══╣");
-            System.out.println();
-        }
-
-        //Affichage de la derniere ligne du tableau
-        System.out.print(" "+abc.charAt(plateau.length-1));
-        for (int i = 0 ; i < plateau.length ; i++) {
-            System.out.print(" ║ "+plateau[plateau.length-1][i]);
-        }
-        System.out.println(" ║");
-        System.out.print("   ╚");
-        for (int i = 0; i < plateau.length-1; i++) {
-            System.out.print("═══╩");
-        }
-        System.out.println("═══╝");
-        System.out.println();
-    }
-
-    /**
-     * lance le jeu si l'entrée de la taille de la grille est incorrect
-     */
-    void raslebol() {
-        System.out.println("        ▜     ▗     ▐▘          ");
-        System.out.println("▛▌▀▌▛▌  ▐ ▀▌  ▜▘▌▌  ▜▘▛▌▛▘▛▘█▌▛▘");
-        System.out.println("▌▌█▌▌▌  ▐▖█▌  ▐▖▙▌  ▐ ▙▌▌ ▙▖▙▖▄▌");
-        System.out.println();
-        System.out.println("▗     ▗     ▘     ▘         ▗     ▄▄▖");
-        System.out.println("▜▘▀▌▛▌▜▘  ▛▌▌▛▘   ▌█▌  ▛▛▌█▌▜▘▛▘  ▙▄▌");
-        System.out.println("▐▖█▌▌▌▐▖  ▙▌▌▄▌   ▌▙▖  ▌▌▌▙▖▐▖▄▌  ▙▄▌");
-        System.out.println("          ▌      ▙▌                 ");
-        sautLigne(3);
-        String str = SimpleInput.getString("Appuyez sur une touche puis sur entrée : ");
-    }
-
-    /**
-     * lance le jeu tout seul
-     */
-    void raslebol2() {
-
-        System.out.println("▌   ▌    ▘        ▗     ▗         ▜ ");
-        System.out.println("▛▌▀▌▛▌   ▌▛▌▌▌█▌  ▜▘▛▌▌▌▜▘  ▛▘█▌▌▌▐ ");
-        System.out.println("▙▌█▌▌▌   ▌▙▌▙▌▙▖  ▐▖▙▌▙▌▐▖  ▄▌▙▖▙▌▐▖");
-        System.out.println("        ▙▌                          ");
-        sautLigne(3);
-        String str = SimpleInput.getString("Appuyez sur une touche puis sur entrée : ");
-    }
-
-    /**
+        /**
      * lance le tour d'un joueur
      * @param plateau le tableau à deux dimensions représentant le plateau de Reversi
      * @param joueur le joueur qui joue
@@ -620,6 +525,104 @@ class Reversi{
         System.out.println();
         String continuer = SimpleInput.getString("Appuyer sur une touche, puis sur entrée pour continuer : ");
         System.out.println();
+    }
+
+    /**
+     * Affiche un nouvel écran pour le tour suivant
+     * @param plateau le tableau à deux dimensions représentant le plateau de Reversi
+     */
+    void transition(char[][] plateau){
+        sautLigne(25);
+        if (plateau.length < 10) {
+            titre();
+        } else {
+            petitTitre();
+        }
+        System.out.println();
+    }
+
+    /**
+     * affiche du reversi avec les valeurs du tableau
+     * @param plateau le tableau à deux dimensions représentant le plateau de Reversi
+     */
+    void afficheGrille(char[][] plateau) {
+        String abc = "abcdefghijklmnop";
+        System.out.print("    ");
+        for (int i = 1 ; i < plateau.length +1 ; i++) { //affichage de l'abcissse
+            System.out.printf("%2d ", i);
+            System.out.print(" ");
+        }
+        System.out.println();
+        
+
+        //Affichage de la premiere ligne du tableau
+        System.out.print("   ╔");
+        for (int i = 0; i < plateau.length-1; i++) {
+            System.out.print("═══╦");
+        }
+        System.out.println("═══╗");
+        
+        for (int i = 0 ; i < plateau.length-1; i++) { //affichage de l'ordonnée et des valeurs
+
+            //affichage des valeurs
+            System.out.print(" "+abc.charAt(i));
+            for (int j = 0 ; j < plateau.length ; j++) { 
+                System.out.print(" ║ "+plateau[i][j]);
+            }
+            System.out.println(" ║");
+
+
+            //affichage de l'interligne
+            System.out.print("   ");
+            System.out.print("╠");
+            for (int k = 0 ; k < plateau.length-1 ; k++) { 
+                System.out.print("═══╬");
+            }
+            System.out.print("═══╣");
+            System.out.println();
+        }
+
+        //Affichage de la derniere ligne du tableau
+        System.out.print(" "+abc.charAt(plateau.length-1));
+        for (int i = 0 ; i < plateau.length ; i++) {
+            System.out.print(" ║ "+plateau[plateau.length-1][i]);
+        }
+        System.out.println(" ║");
+        System.out.print("   ╚");
+        for (int i = 0; i < plateau.length-1; i++) {
+            System.out.print("═══╩");
+        }
+        System.out.println("═══╝");
+        System.out.println();
+    }
+
+    /**
+     * lance le jeu si l'entrée de la taille de la grille est incorrect
+     */
+    void raslebol() {
+        System.out.println("        ▜     ▗     ▐▘          ");
+        System.out.println("▛▌▀▌▛▌  ▐ ▀▌  ▜▘▌▌  ▜▘▛▌▛▘▛▘█▌▛▘");
+        System.out.println("▌▌█▌▌▌  ▐▖█▌  ▐▖▙▌  ▐ ▙▌▌ ▙▖▙▖▄▌");
+        System.out.println();
+        System.out.println("▗     ▗     ▘     ▘         ▗     ▄▄▖");
+        System.out.println("▜▘▀▌▛▌▜▘  ▛▌▌▛▘   ▌█▌  ▛▛▌█▌▜▘▛▘  ▙▄▌");
+        System.out.println("▐▖█▌▌▌▐▖  ▙▌▌▄▌   ▌▙▖  ▌▌▌▙▖▐▖▄▌  ▙▄▌");
+        System.out.println("          ▌      ▙▌                 ");
+        sautLigne(3);
+        String str = SimpleInput.getString("Appuyez sur une touche puis sur entrée : ");
+    }
+
+    /**
+     * lance le jeu tout seul
+     */
+    void raslebol2() {
+
+        System.out.println("▌   ▌    ▘        ▗     ▗         ▜ ");
+        System.out.println("▛▌▀▌▛▌   ▌▛▌▌▌█▌  ▜▘▛▌▌▌▜▘  ▛▘█▌▌▌▐ ");
+        System.out.println("▙▌█▌▌▌   ▌▙▌▙▌▙▖  ▐▖▙▌▙▌▐▖  ▄▌▙▖▙▌▐▖");
+        System.out.println("        ▙▌                          ");
+        sautLigne(3);
+        String str = SimpleInput.getString("Appuyez sur une touche puis sur entrée : ");
     }
 
     /**
